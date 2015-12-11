@@ -48,8 +48,9 @@ $(function () {
       }
     }
 
-    document.getElementsByTagName(params['lazyLoad'] ? 'body' : 'head')[0].appendChild(script);
+    //当设置script的text属性时，需要在加载script DOM节点前设置src属性，否则会执行text文本内容
     script.src = url;
+    document.getElementsByTagName(params['lazyLoad'] ? 'body' : 'head')[0].appendChild(script);
   };
 
   $.loadScript = function (p_url, p_params, p_callback) {
